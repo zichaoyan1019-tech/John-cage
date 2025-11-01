@@ -12,6 +12,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
  */
 
 /* ---------------- Shared Data ---------------- */
+const withBase = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/u, '')}`
+
 const QUOTES = [
   'Everything we do is music.',
   'I have nothing to say and I am saying it.',
@@ -21,16 +23,16 @@ const QUOTES = [
 ]
 
 const IMAGES = [
-  '/images/cage-1.jpeg',
-  '/images/cage-2.jpeg',
-  '/images/cage-3.jpeg',
-  '/images/cage-4.jpeg',
-  '/images/cage-5.jpeg',
-  '/images/cage-6.jpeg',
-  '/images/cage-7.jpeg',
-  '/images/cage-8.jpeg',
-  '/images/cage-9.jpeg',
-  '/images/cage-10.jpeg',
+  withBase('images/cage-1.jpeg'),
+  withBase('images/cage-2.jpeg'),
+  withBase('images/cage-3.jpeg'),
+  withBase('images/cage-4.jpeg'),
+  withBase('images/cage-5.jpeg'),
+  withBase('images/cage-6.jpeg'),
+  withBase('images/cage-7.jpeg'),
+  withBase('images/cage-8.jpeg'),
+  withBase('images/cage-9.jpeg'),
+  withBase('images/cage-10.jpeg'),
 ]
 
 const KEY_EVENTS = [
@@ -1396,7 +1398,7 @@ function PreparedPianoDemo() {
     </button>
   )
 
-  const images = ['/images/prepared-piano-1.webp', '/images/prepared-piano-2.jpeg']
+  const images = [withBase('images/prepared-piano-1.webp'), withBase('images/prepared-piano-2.jpeg')]
 
   const openImage = (src) => {
     setSelectedImage(src)
