@@ -23,17 +23,19 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
- - run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-      - run: npm run build
-- run: cp dist/index.html dist/404.html || true
+          cache-dependency-path: john-cage/package-lock.json
+      - name: Install deps
+        run: npm ci
+        working-directory: ./john-cage
+      - name: Build
+        run: npm run build
+        working-directory: ./john-cage
+      - name: SPA fallback
+        run: cp dist/index.html dist/404.html || true
+        working-directory: ./john-cage
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./john-cage/dist
 
   deploy:
     needs: build
